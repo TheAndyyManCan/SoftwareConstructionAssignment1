@@ -25,6 +25,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
     @Override
     public T head() throws QueueUnderflowException {
+        
         if(isEmpty()){
             throw new QueueUnderflowException();
         } else {
@@ -69,6 +70,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
     @Override
     public void remove() throws QueueUnderflowException {
+        
         if(isEmpty()){
             throw new QueueUnderflowException();
         } else {
@@ -94,7 +96,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                 storage[j] = storage[j + 1];
             }
             
-            //store new length
+            //store new array length
             length = storage.length;
             
         }
@@ -102,6 +104,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
     @Override
     public String toString(){
+        
         String output = "[";
         
         for(int i=0; i < length; i++){
