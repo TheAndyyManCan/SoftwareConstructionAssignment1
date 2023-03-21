@@ -4,11 +4,6 @@
  */
 package queuemanager;
 
-import queuemanager.PriorityItem;
-import queuemanager.PriorityQueue;
-import queuemanager.QueueOverflowException;
-import queuemanager.QueueUnderflowException;
-
 /**
  *
  * @author andy
