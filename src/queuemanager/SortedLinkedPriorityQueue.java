@@ -84,6 +84,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     
     @Override
     public String toString(){
+
         String output = "[";
         
         Node node = this.headNode;
@@ -97,7 +98,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             node = node.getPointer();
             
             output += "(";
-            output += ((PriorityItem<T>)node.getData()).getPriority() + ". " + ((PriorityItem<T>)node.getData()).getItem();
+            output += ((PriorityItem<T>)node.getData());
             output += "), ";
             
         }
