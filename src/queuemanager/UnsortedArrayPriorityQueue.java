@@ -113,7 +113,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                output += ", ";
            }
            
-           output += "(" + ((PriorityItem<T>)storage[i]).getItem() + ", " + ((PriorityItem<T>)storage[i]).getPriority() + ")";
+           output += "(" + ((PriorityItem<T>)storage[i]) + ")";
            
         }
         
