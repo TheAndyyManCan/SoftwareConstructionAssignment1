@@ -20,7 +20,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     public UnsortedArrayPriorityQueue(int size){
         storage = new Object[size];
         capacity = size;
-        length = storage.length;
+        length = -1;
     }
     
     @Override
@@ -34,7 +34,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             int index = 0;
             
             //loop through the array
-            for(int i=0; i < length; i++){
+            for(int i=0; i <= length; i++){
                 
                 //check the priority value of each item
                 if(((PriorityItem<T>) storage[i]).getPriority() > priority){
@@ -53,7 +53,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
     @Override
     public boolean isEmpty(){
-        return length >= capacity;
+        return length < 0;
     }
     
     @Override
@@ -64,7 +64,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             //add new priority item to array
             storage[length] = new PriorityItem<>(item, priority);
             //store new length of array with added item
-            length = storage.length;
+            length++;
         }
     }
     
@@ -97,7 +97,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             }
             
             //store new array length
-            length = storage.length;
+            length--;
             
         }
     }
@@ -107,7 +107,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         
         String output = "[";
         
-        for(int i=0; i < length; i++){
+        for(int i=0; i <= length; i++){
             
            if(i > 0){
                output += ", ";
