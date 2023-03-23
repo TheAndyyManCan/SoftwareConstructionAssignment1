@@ -17,24 +17,7 @@ import static org.junit.Assert.*;
  */
 public class UnsortedArrayPriorityQueueTest {
     
-    public UnsortedArrayPriorityQueueTest() {
-    }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of head method, of class UnsortedArrayPriorityQueue.
@@ -42,12 +25,12 @@ public class UnsortedArrayPriorityQueueTest {
     @Test
     public void testHead() throws Exception {
         System.out.println("head");
-        UnsortedArrayPriorityQueue instance = null;
-        Object expResult = null;
+        UnsortedArrayPriorityQueue<String> instance = new UnsortedArrayPriorityQueue(5);
+        instance.add("test", 5);
+        instance.add("fail", 2);
+        Object expResult = "test";
         Object result = instance.head();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -56,12 +39,20 @@ public class UnsortedArrayPriorityQueueTest {
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        UnsortedArrayPriorityQueue instance = null;
+        UnsortedArrayPriorityQueue<String> instance = new UnsortedArrayPriorityQueue(5);
+        boolean expResult = true;
+        boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testIsEmpty2() throws Exception {
+        System.out.println("isEmpty when queue is not empty");
+        UnsortedArrayPriorityQueue<String> instance = new UnsortedArrayPriorityQueue(5);
+        instance.add("test", 1);
         boolean expResult = false;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -70,12 +61,13 @@ public class UnsortedArrayPriorityQueueTest {
     @Test
     public void testAdd() throws Exception {
         System.out.println("add");
-        Object item = null;
-        int priority = 0;
-        UnsortedArrayPriorityQueue instance = null;
+        String item = "test";
+        int priority = 7;
+        UnsortedArrayPriorityQueue<String> instance = new UnsortedArrayPriorityQueue(5);
         instance.add(item, priority);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expResult = "test";
+        String result = instance.head();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -84,24 +76,28 @@ public class UnsortedArrayPriorityQueueTest {
     @Test
     public void testRemove() throws Exception {
         System.out.println("remove");
-        UnsortedArrayPriorityQueue instance = null;
+        UnsortedArrayPriorityQueue<String> instance = new UnsortedArrayPriorityQueue(5);
+        instance.add("pass", 5);
+        instance.add("fail", 8);
         instance.remove();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(instance.getStorage()[0]);
+        System.out.println(instance.getStorage()[1]);
+        String expResult = "pass";
+        String result = instance.head();
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of toString method, of class UnsortedArrayPriorityQueue.
      */
     @Test
-    public void testToString() {
+    public void testToString() throws Exception {
         System.out.println("toString");
-        UnsortedArrayPriorityQueue instance = null;
-        String expResult = "";
+        UnsortedArrayPriorityQueue<String> instance = new UnsortedArrayPriorityQueue(5);
+        instance.add("test", 4);
+        String expResult = "[(test, 4)]";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
