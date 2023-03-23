@@ -18,7 +18,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
     private final int capacity;
 
     private int length;
-
+  
     public HeapPriorityQueue(int size){
         storage = new Object[size];
         capacity = size;
@@ -55,21 +55,33 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
     }
 
     private void shiftDown(int index){
-
+        
         int maxIndex = index;
-
+        int leftChildIndex = index;
+        int rightChildIndex = index;
+        
+        
         //get left and right child indexes
-        int leftChildIndex = getLeftChildIndex(index);
-        int rightChildIndex = getRightChildIndex(index);
-
-        //check if left child index is a higher priority than the parent index
-        if(leftChildIndex <= length && ((PriorityItem<T>)storage[leftChildIndex]).getPriority() > ((PriorityItem<T>)storage[maxIndex]).getPriority()){
-            maxIndex = leftChildIndex;
+        if(getLeftChildIndex(index) <= length){
+            leftChildIndex = getLeftChildIndex(index);
+        }
+        
+        if(getRightChildIndex(index) <= length){
+            rightChildIndex = getRightChildIndex(index);
         }
 
-        //check if right child index is a higher priority than either the left child or parent index (whichever was higher in the previous check)
-        if(rightChildIndex <= length && ((PriorityItem<T>)storage[rightChildIndex]).getPriority() > ((PriorityItem<T>)storage[maxIndex]).getPriority()){
-            maxIndex = rightChildIndex;
+        if(storage[leftChildIndex] != null){
+            //check if left child index is a higher priority than the parent index
+            if(leftChildIndex <= length && ((PriorityItem<T>)storage[leftChildIndex]).getPriority() > ((PriorityItem<T>)storage[maxIndex]).getPriority()){
+                maxIndex = leftChildIndex;
+            }
+        }
+
+        if(storage[rightChildIndex] != null){
+            //check if right child index is a higher priority than either the left child or parent index (whichever was higher in the previous check)
+            if(rightChildIndex <= length && ((PriorityItem<T>)storage[rightChildIndex]).getPriority() > ((PriorityItem<T>)storage[maxIndex]).getPriority()){
+                maxIndex = rightChildIndex;
+            }
         }
 
         //if the provided index is no longer the highest priority, swap with the highest priority index
@@ -95,8 +107,8 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
                 storage[0] = pi;
             } else {
                 //insert item at bottom of heap and shift up as required
-                storage[length] = pi;
-                shiftUp(length);
+                storage[(length + 1)] = pi;
+                shiftUp((length + 1));
             }
 
             length++;
@@ -122,8 +134,9 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
             storage[0] = storage[length];
             storage[length] = null;
 
-            shiftDown(0);
             length--;
+            shiftDown(0);
+            
 
         }
     }
@@ -144,7 +157,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
                 output += ", ";
             }
 
-            output += "(" + ((PriorityItem<T>)storage[i]) + ")";
+            output += ((PriorityItem<T>)storage[i]);
 
         }
 
