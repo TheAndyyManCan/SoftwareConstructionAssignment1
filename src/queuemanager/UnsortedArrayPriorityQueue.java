@@ -23,10 +23,6 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         length = -1;
     }
     
-    public Object[] getStorage(){
-        return this.storage;
-    }
-    
     @Override
     public T head() throws QueueUnderflowException {
         
