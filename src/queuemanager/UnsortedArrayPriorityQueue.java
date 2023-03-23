@@ -62,7 +62,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             throw new QueueOverflowException();
         } else {
             //add new priority item to array
-            storage[length] = new PriorityItem<>(item, priority);
+            storage[length + 1] = new PriorityItem<>(item, priority);
             //store new length of array with added item
             length++;
         }
@@ -79,7 +79,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             int index = 0;
             
             //loop through the array
-            for(int i=0; i < length; i++){
+            for(int i=0; i <= length; i++){
                 
                 //check the priority value of each item
                 if(((PriorityItem<T>) storage[i]).getPriority() > priority){
@@ -90,8 +90,11 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                 
             }
             
-            //loop backwards through the array after the object being removed
-            for(int j = index; j < length; j++){             
+            //remove priority item
+            storage[index] = null;
+            
+            //loop through the array after the object being removed
+            for(int j = index; j <= length; j++){             
                 //shift each priority item up one space to fill the gap
                 storage[j] = storage[j + 1];
             }
@@ -113,7 +116,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                output += ", ";
            }
            
-           output += "(" + ((PriorityItem<T>)storage[i]) + ")";
+           output += ((PriorityItem<T>)storage[i]);
            
         }
         
