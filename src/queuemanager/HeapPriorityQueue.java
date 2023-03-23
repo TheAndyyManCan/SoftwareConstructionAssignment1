@@ -6,43 +6,81 @@ package queuemanager;
 
 
 /**
- *
+ * Class that utilises a priority queue using the heap data structure
+ * 
  * @author andy
  * @param <T> The type of item being stored
  *
  */
 public class HeapPriorityQueue<T> implements PriorityQueue<T> {
 
+    //where the data is stored
     private final Object[] storage;
 
+    //the full capacity of the queue
     private final int capacity;
 
+    //the current length of the items in the queue
     private int length;
   
+    /**
+     * Constructor for the heap priority queue class. Creates a new priority queue which utilises the heap data type
+     * 
+     * @param size the size of the array to hold the heap
+     */
     public HeapPriorityQueue(int size){
         storage = new Object[size];
         capacity = size;
         length = -1;
     }
 
+    /**
+     * Gives the parent index of the index provided
+     * 
+     * @param index the index for which to calculate the parent index
+     * @return returns the parent index of the index provided 
+     */
     private int getParentIndex(int index){
         return (index - 1) / 2;
     }
 
+    /**
+     * Gives the index of the left child of the index provided
+     * 
+     * @param index the parent index
+     * @return the left child of the parent index provided
+     */
     private int getLeftChildIndex(int index){
         return ((2 * index) + 1);
     }
 
+    /**
+     * Gives the index of the right child of the index provided
+     * 
+     * @param index the parent index
+     * @return the right child of the parent index provided
+     */
     private int getRightChildIndex(int index){
         return ((2 * index) + 2);
     }
 
+    /**
+     * Swaps two indexes in the heap
+     * 
+     * @param index1 the first index to be swapped
+     * @param index2 the second index to be swapped
+     */
     private void swap(int index1, int index2){
         PriorityItem pi = (PriorityItem<T>)storage[index1];
         storage[index1] = storage[index2];
         storage[index2] = pi;
     }
 
+    /**
+     * Sort through the heap from the bottom up to find the correct place for the index to maintain the heap property
+     * 
+     * @param index the index of the item to be shifted up
+     */
     private void shiftUp(int index){
 
         //compare priority with parent node
@@ -54,6 +92,11 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
 
     }
 
+    /**
+     * Sort through the heap from the top down to find the correct place for the index to maintain the heap property
+     * 
+     * @param index the index of the item to be shifted down
+     */
     private void shiftDown(int index){
         
         int maxIndex = index;
@@ -92,6 +135,13 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
 
     }
 
+    /**
+     * Add an item to the bottom of the heap and shift it up until it's in the correct position to maintain the heap property
+     * 
+     * @param item the item to be stored in the array
+     * @param priority the priority value of the queue item
+     * @throws QueueOverflowException if the queue is already full, then throw an error warning 
+     */
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
 
@@ -116,6 +166,12 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
 
     }
 
+    /**
+     * Returns the item with the highest priority in the queue
+     * 
+     * @return returns the item with the highest priority in the queue
+     * @throws QueueUnderflowException if the queue is empty, display an error message
+     */
     @Override
     public T head() throws QueueUnderflowException {
         if(isEmpty()){
@@ -124,9 +180,15 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
             return ((PriorityItem<T>)storage[0]).getItem();
         }
     }
-
+    
+    /**
+     * Remove the item at the top of the heap, move the item from the bottom to the top and shift down until it's in the correct position is order to shift the other items up to the correct position
+     * 
+     * @throws QueueUnderflowException is the queue is empty, display an error message
+     */
     @Override
     public void remove() throws QueueUnderflowException {
+        
         if(isEmpty()){
             throw new QueueUnderflowException();
         } else {
@@ -141,11 +203,21 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
 
+    /**
+     * Returns true if the list is empty
+     * 
+     * @return true if the list is empty or false if it is not
+     */
     @Override
     public boolean isEmpty(){
         return length < 0;
     }
 
+    /**
+     * Display each queue item and its priority value
+     * 
+     * @return String displaying the items in the queue
+     */
     @Override
     public String toString(){
 

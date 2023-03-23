@@ -5,18 +5,31 @@
 package queuemanager;
 
 /**
+ * Utilises an unsorted linked list to create a priority queue
+ * Uses the Node class to create the different nodes on the list
  *
  * @author andy
  * @param <T> The type of data being stored
  */
 public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
+    //the node at the start of the list
     private Node headNode;
 
+    /**
+     * Creates a new priority queue utilising an unsorted linked list
+     */
     public UnsortedLinkedPriorityQueue(){
         this.headNode = null;
     }
 
+    /**
+     * Adds a new node to the start of the list
+     * Sets the pointer of the new node to the current head node
+     * 
+     * @param item the data to be stored in the new node
+     * @param priority the priority value of the new node
+     */
     @Override
     public void add (T item, int priority){
 
@@ -34,6 +47,13 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     }
 
+    /**
+     * Scans along the queue to find the node with the highest priority value
+     * If two nodes have the same priority value then their place in the queue determines their priority
+     * 
+     * @return the data from the node with the highest priority
+     * @throws QueueUnderflowException if the queue is empty, display an error message
+     */
     @Override
     public T head() throws QueueUnderflowException {
 
@@ -81,6 +101,13 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
 
+    /**
+     * Scans along the queue to find the node with the highest priority value
+     * If two nodes have the same priority value then their place in the queue determines their priority
+     * Removes the node from the queue and sets the pointer from the node before the priority node to the node after the priority node
+     * 
+     * @throws QueueUnderflowException if the queue is empty, display an error message
+     */
     @Override
     public void remove() throws QueueUnderflowException {
 
@@ -140,6 +167,11 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
 
+    /**
+     * Determines wether the list is empty 
+     * 
+     * @return 
+     */
     @Override
     public boolean isEmpty(){
         return this.headNode == null;

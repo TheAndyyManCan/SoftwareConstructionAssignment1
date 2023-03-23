@@ -5,24 +5,39 @@
 package queuemanager;
 
 /**
- *
- * @author andy
+ * Utilises an unsorted array to implement a priority queue.
  * 
+ * @author andy
+ * @param <T> The type of data being stored
  */
 public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
+    //where the data is to be stored
     private final Object[] storage;
     
+    //the full capacity of the array
     private final int capacity;
     
+    //the length of the items in the queue
     private int length;
     
+    /**
+     * Creates a new priority queue utilising an unsorted array.
+     * 
+     * @param size the size of the array
+     */
     public UnsortedArrayPriorityQueue(int size){
         storage = new Object[size];
         capacity = size;
         length = -1;
     }
-    
+
+    /**
+     * Scans through the array to find the item with the highest priority
+     * 
+     * @return returns the item with the highest priority value
+     * @throws QueueUnderflowException if the queue is empty then displays an error message
+     */
     @Override
     public T head() throws QueueUnderflowException {
         
@@ -51,11 +66,23 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
     
+    /**
+     * Determines wether the list is empty or not
+     * 
+     * @return true if the queue is empty or false if it is not
+     */
     @Override
     public boolean isEmpty(){
         return length < 0;
     }
     
+    /**
+     * adds a new item to the end of the array
+     * 
+     * @param item the item to be stored in the queue
+     * @param priority the priority value of the item in the queue
+     * @throws QueueOverflowException if the queue is full, displays an error message
+     */
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
         if(length >= capacity){
@@ -68,6 +95,12 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
     
+    /**
+     * Scans through the queue to find the item with the highest priority and removes it from the queue
+     * Shifts each item in the array up to fill the gap left in the array
+     * 
+     * @throws QueueUnderflowException if the queue is already empty, displays an error message
+     */
     @Override
     public void remove() throws QueueUnderflowException {
         
@@ -105,6 +138,11 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
     
+    /**
+     * Displays each item's data and priority value
+     * 
+     * @return a string with each item's data and priority value
+     */
     @Override
     public String toString(){
         

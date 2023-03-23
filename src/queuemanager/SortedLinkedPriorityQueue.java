@@ -6,20 +6,33 @@ package queuemanager;
 
 
 /**
- *
+ * Priority queue which uses a sorted linked list to hold the queue. The node with the highest priority will always be the first node
+ * Each node points to the next node in the queue
+ * 
  * @author andy
  * @param <T> The type of item being stored
  * 
  */
 public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     
+    //The node at the start of the list. This node should always have the highest priority value
     private Node headNode;
     
+    /**
+     * Creates a new priority queue using a sorted linked list
+     * Initializes the headNode property
+     */
     public SortedLinkedPriorityQueue(){
         this.headNode = null;
     }
     
-    
+    /**
+     * Adds a new priority item to the queue. 
+     * Sorts through the queue to find the correct position and changes the pointer of the node before it 
+     * 
+     * @param item item to be stored in the new node
+     * @param priority the priority value of the node to be added
+     */
     @Override
     public void add(T item, int priority) {
         
@@ -55,6 +68,12 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
     
+    /**
+     * Returns the head node as it should always have the highest priority
+     * 
+     * @return the data stored in the node with the highest priority in the queue
+     * @throws QueueUnderflowException if the queue is empty, display an error message 
+     */
     @Override
     public T head() throws QueueUnderflowException {
         if(isEmpty()){
@@ -64,6 +83,11 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
     
+    /**
+     * Removes the head node from the queue and changes the headNode to the node the headNode was pointing to
+     * 
+     * @throws QueueUnderflowException is the queue is empty, display an error message
+     */
     @Override
     public void remove() throws QueueUnderflowException {
         if(isEmpty()){
@@ -77,11 +101,21 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         }
     }
     
+    /**
+     * Returns a value specifying wether the queue is empty or not
+     * 
+     * @return true if the list is empty or false if the list is not empty
+     */
     @Override
     public boolean isEmpty(){
         return this.headNode == null;
     }
     
+    /**
+     * Displays each node's data in the queue and their priority value
+     * 
+     * @return String containing each node's data and priority value
+     */
     @Override
     public String toString(){
 
