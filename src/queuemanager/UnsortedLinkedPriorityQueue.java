@@ -86,7 +86,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
         Node nodeToCheck = this.headNode;
         Node priorityNode = this.headNode;
-        Node priorityNodePrev;
+        Node priorityNodePrev = this.headNode;
         Node priorityNodeNext;
         int priority = 0;
         int iteration = 0;
@@ -130,10 +130,13 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
                     }
 
                 }
-
+                
                 //remove the priority node
                 priorityNodeNext = priorityNode.getPointer();
                 priorityNodePrev.setPointer(priorityNodeNext);
+
+
+            
 
             }
 
