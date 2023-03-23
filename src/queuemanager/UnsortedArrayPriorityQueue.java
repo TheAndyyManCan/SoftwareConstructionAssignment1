@@ -34,7 +34,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             int index = 0;
             
             //loop through the array
-            for(int i=0; i < length; i++){
+            for(int i=0; i <= length; i++){
                 
                 //check the priority value of each item
                 if(((PriorityItem<T>) storage[i]).getPriority() > priority){
