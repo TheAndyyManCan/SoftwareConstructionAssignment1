@@ -131,11 +131,11 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
                 }
 
-            }
+                //remove the priority node
+                priorityNodeNext = priorityNode.getPointer();
+                priorityNodePrev.setPointer(priorityNodeNext);
 
-            //remove the priority node
-            priorityNodeNext = priorityNode.getPointer();
-            priorityNodePrev.setPointer(priorityNodeNext);
+            }
 
         }
     }
