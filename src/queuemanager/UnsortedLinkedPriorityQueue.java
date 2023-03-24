@@ -170,13 +170,18 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /**
      * Determines wether the list is empty 
      * 
-     * @return 
+     * @return true if the list is empty or false if it is not
      */
     @Override
     public boolean isEmpty(){
         return this.headNode == null;
     }
 
+    /**
+     * Displays each node's data and priority value
+     * 
+     * @return a string with each nodes data and priority value
+     */
     @Override
     public String toString(){
 
