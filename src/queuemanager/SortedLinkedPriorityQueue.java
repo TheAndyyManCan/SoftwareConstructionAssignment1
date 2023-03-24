@@ -56,7 +56,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             } else {
                 
                 //traverse through the list to find either the correct position or the end of the list
-                while(nodeToCheck.getPointer() != null && priority < ((PriorityItem<T>)nodeToCheck.getData()).getPriority()){
+                while(nodeToCheck.getPointer() != null && priority <= ((PriorityItem<T>)nodeToCheck.getData()).getPriority()){
                     nodeToCheck = nodeToCheck.getPointer();
                 }
                 
